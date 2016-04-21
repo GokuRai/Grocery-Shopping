@@ -1,6 +1,6 @@
 
 $(function() {
-	function shoppingGrocery() {
+    function shoppingGrocery() {
 	// initiating variable to count items 
 	// and also to assign a unique product ID for the items
 	var count = 100;
@@ -144,6 +144,7 @@ $(function() {
 		var $counter;
 		// holds the current span element
 		var $item = $(this).siblings("h1").children("span");
+		$item.css("display", "inline-block");
 		
 		// checks if span contents value
 		if ( $item.text() ){
@@ -159,23 +160,33 @@ $(function() {
 
 	// resets the cart or basket
 	$('#reset').on('click', function(){
-		$('.butter').children("h1").children('span').text('');
-		$('.bread').children("h1").children('span').text('');
-		$('.milk').children("h1").children('span').text('');
+		$('.products').each(function(i, el) {
+    		$(this).children("h1").children('span').text('0');
+    		$(this).children("h1").children('span').css("display", "none");
+		});
+
 		// clear basket or cart
 		itemInBasket = [];
+		// clears the
+		$('#invoice')
+			.html("<h2 style='margin-top: 80px;'>Please add items to the cart and press checkout. Thank you </h2>"
+				+ "<p><u>Note:</u> You can add same item multiple times by clicking add to cart button multiple times.</p>");
 	});
 
 	// calculates total amount and displays it in the browser
 	$('#checkout').on('click', function(){
-		//finds all products or items
-		var $butterItem = $('.butter').children("h1").children('span');
-		var $breadItem = $('.bread').children("h1").children('span');
-		var $milkItem = $('.milk').children("h1").children('span');
 		
-	 	trackBasketItem(butter, parseInt($butterItem.text()) );
-	 	trackBasketItem(bread, parseInt($breadItem.text()) );
-	 	trackBasketItem(milk, parseInt($milkItem.text()) );
+		//finds all products or items
+		for (var i=0; i < listOfProducts.length; i++) {
+			// gets products name from its object
+			var $temp = listOfProducts[i].productName;
+			// gets the counter value from dom
+			var $tempCount = $('.'+ $temp.toLowerCase()).children("h1").children('span');
+
+			//console.log(listOfProducts[i]);
+			//tracks the items in the cart or basket
+			trackBasketItem( listOfProducts[i], parseInt($tempCount.text()) );
+		}
 	 	
 	 	//checking out
 	 	var totalAmount = checkOut.calculateCost();
@@ -184,18 +195,18 @@ $(function() {
 	 	invoice(totalAmount, discount);
 	 	// clear basket/cart
 		itemInBasket = [];
-		
+
 		//scroll to invoice div
 		// better for smaller screen
-                $('html, body').animate({
-                        scrollTop: $("#invoice").offset().top
-                }, 2000);
+        $('html, body').animate({
+                scrollTop: $("#invoice").offset().top
+        }, 1000);
 	});
 
-	}
+  } // shoppingGrocery function ends here
 
-	// start shopping
-	shoppingGrocery();
+  // start shopping
+  shoppingGrocery();
 
 });
 
