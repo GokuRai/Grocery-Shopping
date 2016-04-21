@@ -67,7 +67,7 @@ body, html{
 
 #invoiceArea{
 	position: relative;
-	margin-top: 10px;
+	margin: 10px 0;
 	background-color: #ccc;
 	height: 200px;
 }
