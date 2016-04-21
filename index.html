@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Challenge Accepted</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="inc/css/style.css">
+
+	</head>
+<body>
+	<div class= "container">
+		<!-- Products area -->
+		<div class="row">
+			<div class= "col-sm-4" >
+				<div class = "products butter border">
+					<h2>Price: £0.80</h2>
+					<h1 class="center-text">Butter <span class="label label-info"></span></h1>
+					<p>Best quality butter in the world.</p>
+					<button type="button" class="btn btn-primary center-block addToCart c1">Add To Cart</button>
+				</div>
+
+			</div>
+			<div class= "col-sm-4">
+				<div class = "products bread border">
+					<h2>Price: £1.15</h2>
+					<h1 class="center-text">Bread <span class="label label-info"></span></h1>
+					<p>Best quality bread in the world.</p>
+					<button type="button" class="btn btn-primary center-block addToCart">Add To Cart</button>
+				</div>
+			</div>
+			<div class= "col-sm-4" >
+				<div class = "products milk border">
+					<h2>Price: £1.00</h2>
+					<h1 class="center-text">Milk <span class="label label-info"></span></h1>
+					<p>Best quality milk in the world.</p>
+					<button type="button" class="btn btn-primary center-block addToCart">Add To Cart</button>
+				</div>
+			</div>
+		</div>
+		<!-- Check out area -->
+		<div id="checkOutArea" class="row">
+			<div class="col-sm-2"></div>
+			<div class= "col-sm-4">
+				<button id="reset" type="button" class="btn btn-warning btn-lg btn-block center-block">Reset</button>
+			</div>
+			<div class= "col-sm-4" >
+				<button id="checkout" type="button" class="btn btn-success btn-lg btn-block center-block">Check Out</button>
+			</div>
+		</div>
+
+		<!-- invoice area -->
+		<div id="invoiceArea" class="row border">
+			<div id="invoice" class="col-sm-12 center-text">
+
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="inc/js/main2.js"></script>
+</body>
+</html>
