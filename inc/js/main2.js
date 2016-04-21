@@ -184,6 +184,12 @@ $(function() {
 	 	invoice(totalAmount, discount);
 	 	// clear basket/cart
 		itemInBasket = [];
+		
+		//scroll to invoice div
+		// better for smaller screen
+                $('html, body').animate({
+                        scrollTop: $("#invoice").offset().top
+                }, 2000);
 	});
 
 	}
