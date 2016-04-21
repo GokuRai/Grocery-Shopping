@@ -1,0 +1,80 @@
+body, html{
+	margin: 0;
+	padding: 0;
+}
+
+.border {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.center-text {
+	text-align: center;
+}
+
+.center-div {
+	margin: 0 auto;
+}
+
+.products {
+	position: relative;
+	height: 300px;
+	background-color: yellow;
+	margin: 10px 5px;
+	padding: 10px;
+}
+
+.products h1 {
+	color: white;
+	margin-top: 60px;
+}
+
+.products p {
+	bottom: 0px;
+}
+
+
+.butter {
+	background-color: #3fb0ac;
+}
+
+.bread {
+	background-color: #89bdd3;
+}
+
+.milk {
+	background-color: #9068be;
+}
+
+.products button{
+	position: absolute;
+	margin: auto;
+	bottom:20px;
+	left: 0;
+	right: 0;
+	width: 100%;
+}
+
+#checkOutArea {
+	margin-top: 15px;
+}
+
+#checkOutArea button {
+	margin-top: 5px;
+}
+
+#invoiceArea{
+	position: relative;
+	margin-top: 10px;
+	background-color: #ccc;
+	height: 200px;
+}
+
+p.totalAmount {
+	font-size: 150%;
+	margin-top: 40px;
+}
+
+
