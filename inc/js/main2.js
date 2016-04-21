@@ -43,17 +43,19 @@ $(function() {
 
 			// loops through basket or cart to count total number of
 			// each items in that basket
-			for (item in itemInBasket){
-				if (itemInBasket[item].productName == "Butter") {
-					butterCounter = butterCounter + 1;
-				}
-				else if (itemInBasket[item].productName == "Milk") {
-					milkCounter = milkCounter + 1;
-				}
-				else if (itemInBasket[item].productName == "Bread") {
-					breadCounter = breadCounter + 1;
-				}
-			}
+			for (var i = 0; i < itemInBasket.length; i++){
+                                if (!itemInBasket[i])
+                                        continue;
+                                if (itemInBasket[i].productName == "Butter") 
+                                        butterCounter = butterCounter + 1;
+                                
+                                else if (itemInBasket[i].productName == "Milk") 
+                                        milkCounter = milkCounter + 1;
+    
+                                else if (itemInBasket[i].productName == "Bread") 
+                                        breadCounter = breadCounter + 1;
+                                
+                        }
 
 			//console.log(butterCounter);
 			//console.log(milkCounter);
@@ -85,9 +87,11 @@ $(function() {
 			var amount = 0;
 			var total = 0;
 			var discountedAmount = this.checkDiscount();
-			for (item in itemInBasket) {
-				amount = amount + itemInBasket[item].price;
-			}
+			for (var i=0; i < itemInBasket.length; i++) {
+                		if (!itemInBasket[i] )
+                        	continue;
+                		amount = amount + itemInBasket[i].price;
+            		}
 			total = amount - discountedAmount;
 			console.log(total.toFixed(2));
 			console.log(discountedAmount);
