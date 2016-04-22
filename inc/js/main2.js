@@ -167,7 +167,13 @@ $(function() {
 
 		// clear basket or cart
 		itemInBasket = [];
-		// clears the
+		
+		// animation to scroll to top
+		$('html, body').animate({
+                        scrollTop: $("body").offset().top
+                }, 800);
+                
+		// clears the invoice div and displays a message
 		$('#invoice')
 			.html("<h2 style='margin-top: 80px;'>Please add items to the cart and press checkout. Thank you </h2>"
 				+ "<p><u>Note:</u> You can add same item multiple times by clicking add to cart button multiple times.</p>");
