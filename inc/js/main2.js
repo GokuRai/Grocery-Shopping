@@ -28,7 +28,8 @@ $(function() {
 	products.prototype.addToBasket = function(){
 		itemInBasket.push(this);
 	}
-
+	
+	/****** checkOut object *******/
 	// checkOut object holds functions to calculate discount 
 	// and total amount
 	var checkOut = {
@@ -101,7 +102,7 @@ $(function() {
 		}
 	}
 
-	// creating products
+	/****** creating products ******/
 	var butter = new products("Butter", 0.80);
 	var milk = new products("Milk", 1.15);
 	var bread = new products("Bread", 1.00);
@@ -136,7 +137,7 @@ $(function() {
 		$('#invoice').html($totalAmount + $discount + $amount);
 	}
 
-	//dom interactions
+	/********** 		events 			***********/
 	// displays the number of item added to the cart 
 	// and also updates the number of the item added to the cart
 	$('.addToCart').on('click', function(){
@@ -167,6 +168,9 @@ $(function() {
 
 		// clear basket or cart
 		itemInBasket = [];
+		
+		// removes the close 'x' element
+		$('.products h1').children('a.close').remove();
 		
 		// animation to scroll to top
 		$('html, body').animate({
@@ -208,6 +212,67 @@ $(function() {
                 scrollTop: $("#invoice").offset().top
         }, 1000);
 	});
+	
+	/*** allows user to remove or add any quantity for the selected products **/
+  // creating object for namespacing
+  // to check if the element is span or textbox
+  var stateCheck = {textbox: false};
+
+  // using delegation to target class
+  $('.products').on('click', '.enter-amount', function(){
+  		if (!stateCheck.textbox) {
+            var input = $('<input type="text" />').attr({
+                'class': 'enter-amount',
+                'style': 'color: black; width: 15%;',
+                'value': $(this).text()
+            });
+            // adding textbox to h1
+            $(this).parent().append(input);
+            // removes old close 'x'
+            $(this).parent().children('.close').remove();
+            // removes span element
+            $(this).remove();
+           // focuses and selects text/value in the textbox
+            input.focus();
+            input.select();
+            
+            // sets check to true or 
+            // indicates the element is now changed to input text from span element
+            stateCheck.textbox = true;
+        }
+  });
+
+  // changes the quantity to the amount entered when out of focus from the textbox
+  $('.products').on('blur', 'input.enter-amount', function() {
+  		// checks if the element is input text
+  		if (stateCheck.textbox) {
+            var span = $('<span />').attr({
+                'class': 'label label-success enter-amount'
+            });
+           
+            var anchorTag = $("<a>&times;</a>").attr({
+            	'class': 'close',
+            	'style': 'position: absolute; margin-left: -15px; font-size: 70%;',
+            	'data-dismiss': 'alert',
+            	'aria-label': 'close'
+            });
+            // adds the new span element
+            $(this).parent().append($(span).html($(this).val()));
+            $(this).parent().append(anchorTag);
+            // removes the current input text element
+            $(this).remove();
+
+            // indicates the element is now span
+            stateCheck.textbox = false;
+        }
+  });
+
+  // adding a tag to remove product from basket
+  $('.products').on('click', 'a.close', function(){
+  		// sets the quantity to 0
+  		$( this ).siblings('span').text('0');
+  		//console.log($( this ).siblings('span'));
+  }); 
 
   } // shoppingGrocery function ends here
 
