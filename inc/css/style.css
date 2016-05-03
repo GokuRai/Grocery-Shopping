@@ -39,11 +39,6 @@ body, html{
 	cursor: pointer;
 }
 
-.products h1 span input[type='text']{
-	width: 15%;
-	color: black;
-}
-
 .butter {
 	background-color: #3fb0ac;
 }
