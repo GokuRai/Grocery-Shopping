@@ -223,7 +223,7 @@ $(function() {
   		if (!stateCheck.textbox) {
             var input = $('<input type="text" />').attr({
                 'class': 'enter-amount',
-                'style': 'color: black; width: 15%;',
+                'style': 'color: black; width: 65px;',
                 'value': $(this).text()
             });
             // adding textbox to h1
@@ -273,6 +273,23 @@ $(function() {
   		$( this ).siblings('span').text('0');
   		//console.log($( this ).siblings('span'));
   }); 
+  
+  /******* validation (only allows numbers and enter key) *****/
+   //event triggered when key is pressed in textbox
+  $(".products").on('keydown', 'input.enter-amount', function (e) {
+    
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    	// if enter key is pressed
+     	if(keycode == '13' ){
+       		$( this ).blur();  
+     	}
+     //if the letter is not digit then alert error and return false
+    if (keycode != 8 && keycode != 0 && keycode != 13 && (keycode < 48 || keycode > 57)) {
+        //display error message
+        alert("Numerical Digits Only");        
+        return false;
+    }
+   });
 
   } // shoppingGrocery function ends here
 
