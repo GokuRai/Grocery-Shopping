@@ -223,15 +223,12 @@ $(function() {
   		if (!stateCheck.textbox) {
             var input = $('<input type="text" />').attr({
                 'class': 'enter-amount',
-                'style': 'color: black; width: 65px;',
+                'style': 'color: black; width: 70px;',
                 'value': $(this).text()
             });
-            // adding textbox to h1
-            $(this).parent().append(input);
-            // removes old close 'x'
-            $(this).parent().children('.close').remove();
-            // removes span element
-            $(this).remove();
+            // replace span element with input text
+            $(this).replaceWith(input);
+            
            // focuses and selects text/value in the textbox
             input.focus();
             input.select();
@@ -256,11 +253,8 @@ $(function() {
             	'data-dismiss': 'alert',
             	'aria-label': 'close'
             });
-            // adds the new span element
-            $(this).parent().append($(span).html($(this).val()));
-            $(this).parent().append(anchorTag);
-            // removes the current input text element
-            $(this).remove();
+            // replace input text with the new span element
+            $(this).replaceWith($(span).html($(this).val()), anchorTag);
 
             // indicates the element is now span
             stateCheck.textbox = false;
