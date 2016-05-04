@@ -3,6 +3,15 @@ body, html{
 	padding: 0;
 }
 
+.close {
+
+	opacity: 0.5;
+}
+
+.close:hover {
+	opacity: 1;
+}
+
 .border {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
