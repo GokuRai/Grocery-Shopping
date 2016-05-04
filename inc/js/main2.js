@@ -282,12 +282,16 @@ $(function() {
   $(".products").on('keydown', 'input.enter-amount', function (e) {
     
     var keycode = (e.keyCode ? e.keyCode : e.which);
-     	// validation check if number is entered
-  	// assigns default value 0, if no number is entered
+     	// if enter key is pressed
+    if(keycode == '13' ){
+
+    	// validation check if number is entered
+  		// assigns default value 0, if no number is entered
     	if ( !$(this).val() )
         	$(this).val('0');
+        
     	$( this ).blur();  
-     	}
+    }
      //if the letter is not digit then sho error msg
     if (keycode != 8 && keycode != 0 && keycode != 13 && (keycode < 48 || keycode > 57)) {
         //display error message
