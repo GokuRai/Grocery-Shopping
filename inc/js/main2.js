@@ -245,8 +245,13 @@ $(function() {
 
   // changes the quantity to the amount entered when out of focus from the textbox
   $('.products').on('blur', 'input.enter-amount', function() {
-  		// checks if the element is input text
-  		if (stateCheck.textbox) {
+  	// validation check if number is entered
+  	// assigns default value 0, if no number is entered
+  	if ( !$(this).val() )
+        	$(this).val('0');
+
+  	// checks if the element is input text
+  	if (stateCheck.textbox) {
             var span = $('<span />').attr({
                 'class': 'label label-success enter-amount'
             });
@@ -277,14 +282,21 @@ $(function() {
   $(".products").on('keydown', 'input.enter-amount', function (e) {
     
     var keycode = (e.keyCode ? e.keyCode : e.which);
-    	// if enter key is pressed
-     	if(keycode == '13' ){
-       		$( this ).blur();  
+     	// validation check if number is entered
+  	// assigns default value 0, if no number is entered
+    	if ( !$(this).val() )
+        	$(this).val('0');
+    	$( this ).blur();  
      	}
-     //if the letter is not digit then alert error and return false
+     //if the letter is not digit then sho error msg
     if (keycode != 8 && keycode != 0 && keycode != 13 && (keycode < 48 || keycode > 57)) {
         //display error message
-        alert("Numerical Digits Only");        
+        $(this).attr({
+                'data-toggle': 'tooltip',
+                'data-placement': 'top',
+                'title' : 'Numerical Digits Only'
+            });
+        $(this).tooltip('show');
         return false;
     }
    });
