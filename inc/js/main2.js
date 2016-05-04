@@ -226,6 +226,10 @@ $(function() {
                 'style': 'color: black; width: 70px;',
                 'value': $(this).text()
             });
+            
+            // removes old close 'x' 
+            $(this).siblings('.close').remove();
+            
             // replace span element with input text
             $(this).replaceWith(input);
             
