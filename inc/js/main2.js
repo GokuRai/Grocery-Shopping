@@ -158,6 +158,31 @@ $(function() {
 		
 
 	});
+	
+	// binding on more click event to addToCart button
+	// its a helper tooltip
+	$('.addToCart').bind('click', 'span.enter-amount', function(){
+		//adds new attributes to the span element
+		// these new attribs will 
+		$(this).parent().children('h1').children('span.enter-amount').attr({
+                'data-toggle': 'tooltip',
+                'data-placement': 'top',
+                'title' : 'Click me :) '
+            });
+
+		//since setTimeout sets 'this' to window
+		// 'that' variable is used to access the element later in setTimeout func
+		var that = $(this).parent().children('h1').children('span.enter-amount');
+		//shows the helper tooltip
+        that.tooltip('show');
+
+        // removes tooltip after 1.5 sec
+        setTimeout( function(){
+        	that.tooltip('destroy');
+        	}, 1500);
+        return false;
+
+	});
 
 	// resets the cart or basket
 	$('#reset').on('click', function(){
@@ -219,8 +244,13 @@ $(function() {
   var stateCheck = {textbox: false};
 
   // using delegation to target class
-  $('.products').on('click', '.enter-amount', function(){
-  		if (!stateCheck.textbox) {
+  $('.products').on('click', 'span.enter-amount', function(){
+  	// makes sure the helper tooltip is removed
+  	// if setTimeout function didn't remove it
+        if($(this).siblings('div.tooltip'))
+        	$(this).siblings('div.tooltip').remove();
+  	
+  	if (!stateCheck.textbox) {
             var input = $('<input type="text" />').attr({
                 'class': 'enter-amount',
                 'style': 'color: black; width: 70px;',
