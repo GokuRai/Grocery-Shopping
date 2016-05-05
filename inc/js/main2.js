@@ -309,7 +309,7 @@ $(function() {
   
   /******* validation (only allows numbers and enter key) *****/
    //event triggered when key is pressed in textbox
-  $(".products").on('keydown', 'input.enter-amount', function (e) {
+  $(".products").on('keypress', 'input.enter-amount', function (e) {
     
     var keycode = (e.keyCode ? e.keyCode : e.which);
      	// if enter key is pressed
