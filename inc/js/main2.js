@@ -1,10 +1,10 @@
 
 $(function() {
     function shoppingGrocery() {
-	// initiating variable to count items 
+	// initiating variable to count items
 	// and also to assign a unique product ID for the items
 	var count = 100;
-
+  alet('test');
 	// function to increment count for products
 	var countProduct = function (){
 		return ++count;
@@ -28,13 +28,13 @@ $(function() {
 	products.prototype.addToBasket = function(){
 		itemInBasket.push(this);
 	}
-	
+
 	/****** checkOut object *******/
-	// checkOut object holds functions to calculate discount 
+	// checkOut object holds functions to calculate discount
 	// and total amount
 	var checkOut = {
 		checkDiscount: function(){
-			// variables to hold number of items 
+			// variables to hold number of items
 			var butterCounter = 0;
 			var milkCounter = 0;
 			var breadCounter = 0;
@@ -47,15 +47,15 @@ $(function() {
 			for (var i = 0; i < itemInBasket.length; i++){
                                 if (!itemInBasket[i])
                                         continue;
-                                if (itemInBasket[i].productName == "Butter") 
+                                if (itemInBasket[i].productName == "Butter")
                                         butterCounter = butterCounter + 1;
-                                
-                                else if (itemInBasket[i].productName == "Milk") 
+
+                                else if (itemInBasket[i].productName == "Milk")
                                         milkCounter = milkCounter + 1;
-    
-                                else if (itemInBasket[i].productName == "Bread") 
+
+                                else if (itemInBasket[i].productName == "Bread")
                                         breadCounter = breadCounter + 1;
-                                
+
                         }
 
 			//console.log(butterCounter);
@@ -63,14 +63,14 @@ $(function() {
 			//console.log(breadCounter);
 
 			// discount logic
-			while ((butterCounter >=2 && breadCounter >= 1) || 
-					milkCounter >= 4) { 
+			while ((butterCounter >=2 && breadCounter >= 1) ||
+					milkCounter >= 4) {
 
 				if(butterCounter >= 2 && breadCounter >= 1){
 					console.log('Bread is 50% discounted');
 					discount += (50/100) * listOfProducts[2].price;
 					butterCounter -= 2;
-					breadCounter--;  
+					breadCounter--;
 				}
 
 				if(milkCounter >= 4){
@@ -96,7 +96,7 @@ $(function() {
 			total = amount - discountedAmount;
 			console.log(total.toFixed(2));
 			console.log(discountedAmount);
-			
+
 			return total.toFixed(2);
 
 		}
@@ -114,7 +114,7 @@ $(function() {
 
 		for (var i = 0; i < count; i++) {
 			objectName.addToBasket();
-		}	
+		}
 
 		console.log(itemInBasket);
 	}
@@ -128,17 +128,17 @@ $(function() {
 	function invoice(amount, discount){
 		console.log ("amounts are" , amount, discount);
 		var $amount = (Number(amount)+Number(discount));
-		var $amount = "<p class='discountedAmount'>Amount before discount: " + 
+		var $amount = "<p class='discountedAmount'>Amount before discount: " +
 			"<span class='discount'> £" + $amount.toFixed(2) + "</span>" + "</p>";
-		var $totalAmount = "<p class='totalAmount'>Total Amount: " + 
+		var $totalAmount = "<p class='totalAmount'>Total Amount: " +
 			"<span class='amount'> £" + amount + "</span>" + "</p>";
-		var $discount = "<p class='totalAmount'>Discount: " + 
+		var $discount = "<p class='totalAmount'>Discount: " +
 			"<span class='amount'> £" + discount + "</span>" + "</p>";
 		$('#invoice').html($totalAmount + $discount + $amount);
 	}
 
 	/********** 		events 			***********/
-	// displays the number of item added to the cart 
+	// displays the number of item added to the cart
 	// and also updates the number of the item added to the cart
 	$('.addToCart').on('click', function(){
 		// declaring variable to hold count for each item
@@ -146,7 +146,7 @@ $(function() {
 		// holds the current span element
 		var $item = $(this).siblings("h1").children("span");
 		$item.css("display", "inline-block");
-		
+
 		// checks if span contents value
 		if ( $item.text() ){
 			$counter = parseInt($item.text()) + 1;
@@ -155,15 +155,15 @@ $(function() {
 		}
 		// adds the new value to the span element
 		$item.text($counter);
-		
+
 
 	});
-	
+
 	// binding on more click event to addToCart button
 	// its a helper tooltip
 	$('.addToCart').bind('click', 'span.enter-amount', function(){
 		//adds new attributes to the span element
-		// these new attribs will 
+		// these new attribs will
 		$(this).parent().children('h1').children('span.enter-amount').attr({
                 'data-toggle': 'tooltip',
                 'data-placement': 'top',
@@ -193,15 +193,15 @@ $(function() {
 
 		// clear basket or cart
 		itemInBasket = [];
-		
+
 		// removes the close 'x' element
 		$('.products h1').children('a.close').remove();
-		
+
 		// animation to scroll to top
 		$('html, body').animate({
                         scrollTop: $("body").offset().top
                 }, 800);
-                
+
 		// clears the invoice div and displays a message
 		$('#invoice')
 			.html("<h2 style='margin-top: 80px;'>Please add items to the cart and press checkout. Thank you </h2>"
@@ -210,7 +210,7 @@ $(function() {
 
 	// calculates total amount and displays it in the browser
 	$('#checkout').on('click', function(){
-		
+
 		//finds all products or items
 		for (var i=0; i < listOfProducts.length; i++) {
 			// gets products name from its object
@@ -222,7 +222,7 @@ $(function() {
 			//tracks the items in the cart or basket
 			trackBasketItem( listOfProducts[i], parseInt($tempCount.text()) );
 		}
-	 	
+
 	 	//checking out
 	 	var totalAmount = checkOut.calculateCost();
 	 	var discount = checkOut.checkDiscount();
@@ -237,7 +237,7 @@ $(function() {
                 scrollTop: $("#invoice").offset().top
         }, 1000);
 	});
-	
+
 	/*** allows user to remove or add any quantity for the selected products **/
   // creating object for namespacing
   // to check if the element is span or textbox
@@ -249,25 +249,25 @@ $(function() {
   	// if setTimeout function didn't remove it
         if($(this).siblings('div.tooltip'))
         	$(this).siblings('div.tooltip').remove();
-  	
+
   	if (!stateCheck.textbox) {
             var input = $('<input type="text" />').attr({
                 'class': 'enter-amount',
                 'style': 'color: black; width: 70px;',
                 'value': $(this).text()
             });
-            
-            // removes old close 'x' 
+
+            // removes old close 'x'
             $(this).siblings('.close').remove();
-            
+
             // replace span element with input text
             $(this).replaceWith(input);
-            
+
            // focuses and selects text/value in the textbox
             input.focus();
             input.select();
-            
-            // sets check to true or 
+
+            // sets check to true or
             // indicates the element is now changed to input text from span element
             stateCheck.textbox = true;
         }
@@ -285,7 +285,7 @@ $(function() {
             var span = $('<span />').attr({
                 'class': 'label label-success enter-amount'
             });
-           
+
             var anchorTag = $("<a>&times;</a>").attr({
             	'class': 'close',
             	'style': 'position: absolute; margin-left: -15px; font-size: 70%;',
@@ -305,12 +305,12 @@ $(function() {
   		// sets the quantity to 0
   		$( this ).siblings('span').text('0');
   		//console.log($( this ).siblings('span'));
-  }); 
-  
+  });
+
   /******* validation (only allows numbers and enter key) *****/
    //event triggered when key is pressed in textbox
   $(".products").on('keypress', 'input.enter-amount', function (e) {
-    
+
     var keycode = (e.keyCode ? e.keyCode : e.which);
      	// if enter key is pressed
     if(keycode == '13' ){
@@ -319,8 +319,8 @@ $(function() {
   		// assigns default value 0, if no number is entered
     	if ( !$(this).val() )
         	$(this).val('0');
-        
-    	$( this ).blur();  
+
+    	$( this ).blur();
     }
      //if the letter is not digit then sho error msg
     if (keycode != 8 && keycode != 0 && keycode != 13 && (keycode < 48 || keycode > 57)) {
@@ -341,6 +341,3 @@ $(function() {
   shoppingGrocery();
 
 });
-
-
-
